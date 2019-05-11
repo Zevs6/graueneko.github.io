@@ -373,7 +373,7 @@
                     [{ 'cn': '体力总计', 'en': 'Total Sanity Cost' }[lang], "<b>" + (lsn + cen) * 30 + "</b> <sub>= " + lsn * 30 + " + " + cen * 30 + "</sub>"],
                     [{ 'cn': '经验', 'en': 'Exp' }[lang], "<b>" + eb + "</b> <sub>= " + es + " - " + bs + "</sub>"],
                     [{ 'cn': 'LS体力 <sub>场数</sub>', 'en': 'LS Sanity <sub>Cost</sub>' }[lang], "<b>" + lsn * 30 + "</b> <sub>= 30 * " + lsn + "</sub>"],
-                    [{ 'cn': '金币', 'en': 'Coins' }[lang], "<b>" + gn + "</b> <sub>= " + gs + " - " + ga + "</sub>"],
+                    [{ 'cn': '金币', 'en': 'Coins' }[lang], "<b>" + gn + "</b> <sub>= " + gs + " - " + (ga + lsn * 360) + "</sub>"],
                     [{ 'cn': 'CE体力 <sub>场数</sub>', 'en': 'CE Sanity <sub>Cost</sub>' }[lang], "<b>" + cen * 30 + "</b> <sub>= 30 * " + cen + "</sub>"],
                     [{ 'cn': '升级金币', 'en': 'Coins for Leveling' }[lang], cs.toFixed(1)],
                     [{ 'cn': '精英化金币', 'en': 'Coins for Elite' }[lang], ea],
