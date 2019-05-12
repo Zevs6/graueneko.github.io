@@ -255,6 +255,7 @@
                             tags_aval[tag].push({ "name": name, "img": char["name-en"], "level": char.level, "type": char.type });
                         } else {
                             tags_aval[tag] = [{ "name": name, "img": char["name-en"], "level": char.level, "type": char.type }];
+                            tag_count++;
                         }
                         char_tag_sum++;
                     });

@@ -308,7 +308,7 @@
                 let opt = $(this).attr("opt");
                 let ev = parseInt($("#" + opt + "-evolve").val());
                 $("#" + opt + "-level").val(maxLevel[star - 1][ev]);
-                console.log(maxLevel[star - 1][ev])
+                //console.log(maxLevel[star - 1][ev])
             });
             $(document).on('click', '#btn-calculate', function () {
                 $("#error-info").hide();
