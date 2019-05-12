@@ -126,125 +126,135 @@
                         <div class="form-group col-4">
                             <label for="current-level">
                                 <span class="cn">当前等级</span>
-                                <span class="en">Current Level</span>
+                                <span class="en">Current Lv</span>
                             </label>
-                            <input type="text" class="form-control form-control-sm" id="current-level" value="1">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control form-control-sm" id="current-level" value="1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary level2max" opt="current"><span class="cn">最大</span><span class="en">Max</span></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group col-4">
-                            <label for="current-exp">
-                                <span class="cn">当前经验</span>
-                                <span class="en">Current Exp</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" id="current-exp" value="0">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="target-evolve">
-                                <span class="cn">目标精英化</span>
-                                <span class="en">Target Elite</span>
-                            </label>
-                            <select id="target-evolve" class="form-control form-control-sm">
-                                <option selected>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="target-level">
-                                <span class="cn">目标等级</span>
-                                <span class="en">Target Level</span>
-                            </label>
+                    <div class="form-group col-4">
+                        <label for="current-exp">
+                            <span class="cn">当前经验</span>
+                            <span class="en">Current Exp</span>
+                        </label>
+                        <input type="text" class="form-control form-control-sm" id="current-exp" value="0">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="target-evolve">
+                            <span class="cn">目标精英化</span>
+                            <span class="en">Target Elite</span>
+                        </label>
+                        <select id="target-evolve" class="form-control form-control-sm">
+                            <option selected>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="target-level">
+                            <span class="cn">目标等级</span>
+                            <span class="en">Target Lv</span>
+                        </label>
+                        <div class="input-group input-group-sm">
                             <input type="text" class="form-control form-control-sm" id="target-level" value="1">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="gold-asset">
-                                <span class="cn">已有金币</span>
-                                <span class="en">Lungmen Coins</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" id="gold-asset" value="0">
-                        </div>
-                        <div class="form-group col-3">
-                            <label for="book-basic">
-                                <span class="cn">基础经验</span>
-                                <span class="en">Green Exp Cards</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" id="book-basic" value="0">
-                        </div>
-                        <div class="form-group col-3">
-                            <label for="book-primary">
-                                <span class="cn">初级经验</span>
-                                <span class="en">Blue Exp Cards</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" id="book-primary" value="0">
-                        </div>
-                        <div class="form-group col-3">
-                            <label for="book-middle">
-                                <span class="cn">中级经验</span>
-                                <span class="en">Yellow Exp Cards</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" id="book-middle" value="0">
-                        </div>
-                        <div class="form-group col-3">
-                            <label for="book-advanced">
-                                <span class="cn">高级经验</span>
-                                <span class="en">Gold Exp Cards</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" id="book-advanced" value="0">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary level2max" opt="target"><span class="cn">最大</span><span class="en">Max</span></button>
+                            </div>
                         </div>
                     </div>
+                    <div class="form-group col-4">
+                        <label for="gold-asset">
+                            <span class="cn">已有金币</span>
+                            <span class="en">Lungmen Coins</span>
+                        </label>
+                        <input type="text" class="form-control form-control-sm" id="gold-asset" value="0">
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="book-basic">
+                            <span class="cn">基础<sub>经验书</sub></span>
+                            <span class="en">Green<sub> Exp Cards</sub></span>
+                        </label>
+                        <input type="text" class="form-control form-control-sm" id="book-basic" value="0">
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="book-primary">
+                            <span class="cn">初级<sub>经验书</sub></span>
+                            <span class="en">Blue<sub> Exp Cards</sub></span>
+                        </label>
+                        <input type="text" class="form-control form-control-sm" id="book-primary" value="0">
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="book-middle">
+                            <span class="cn">中级<sub>经验书</sub></span>
+                            <span class="en">Yellow<sub> Exp Cards</sub></span>
+                        </label>
+                        <input type="text" class="form-control form-control-sm" id="book-middle" value="0">
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="book-advanced">
+                            <span class="cn">高级<sub>经验书</sub></span>
+                            <span class="en">Gold<sub> Exp Cards</sub></span>
+                        </label>
+                        <input type="text" class="form-control form-control-sm" id="book-advanced" value="0">
+                    </div>
                 </div>
-                <div class="row">
-                    <button class="btn btn-success col-10 text-center" id="btn-calculate" style="margin:auto;">
-                        <span class="cn">计算</span>
-                        <span class="en">Calculate</span>
-                    </button>
-                </div>
-                <div class="col-12 alert alert-danger mt-3" id="error-info" role="alert" style="display:none"></div>
             </div>
-            <div class="col-12 col-md-6">
-                <table class="table table-striped my-3">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col" width="40%" class="text-right">
-                                <span class="cn">资源</span>
-                                <span class="en">Resource</span>
-                            </th>
-                            <th scope="col" width="60%">
-                                <span class="cn">需求</span>
-                                <span class="en">Demand</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-result"></tbody>
-                </table>
+            <div class="row">
+                <button class="btn btn-success col-10 text-center" id="btn-calculate" style="margin:auto;">
+                    <span class="cn">计算</span>
+                    <span class="en">Calculate</span>
+                </button>
             </div>
+            <div class="col-12 alert alert-danger mt-3" id="error-info" role="alert" style="display:none"></div>
         </div>
-        <hr />
-        <div class="row col-12 tutorial">
-            <div class="col-12 col-sm-6 text-left">
-                <p class="cn"><b>各星级最大等级说明</b></p>
-                <p class="en"><b>Maximum level of each star</b></p>
-                <p>1★：30</p>
-                <p>2★：30</p>
-                <p>3★：40/55</p>
-                <p>4★：45/60/70</p>
-                <p>5★：50/70/80</p>
-                <p>6★：50/80/90</p>
-            </div>
-            <div class="col-12 col-sm-6 text-left cn">
-                <p><b>各等级经验书说明：</b></p>
-                <p>基础：200</p>
-                <p>初级：400</p>
-                <p>中级：1000</p>
-                <p>高级：2000</p>
-            </div>
-            <div class="col-12 col-sm-6 text-left en">
-                <p><b>Exp Card yields：</b></p>
-                <p>Green Card：200<sub></sub></p>
-                <p>Blue Card：400</p>
-                <p>Yellow Card：1000</p>
-                <p>Gold Card：2000</p>
-            </div>
+        <div class="col-12 col-md-6">
+            <table class="table table-striped my-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" width="40%" class="text-right">
+                            <span class="cn">资源</span>
+                            <span class="en">Resource</span>
+                        </th>
+                        <th scope="col" width="60%">
+                            <span class="cn">需求</span>
+                            <span class="en">Demand</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-result"></tbody>
+            </table>
         </div>
+    </div>
+    <hr />
+    <div class="row col-12 tutorial">
+        <div class="col-12 col-sm-6 text-left">
+            <p class="cn"><b>各星级最大等级说明</b></p>
+            <p class="en"><b>Maximum level of each star</b></p>
+            <p>1★：30</p>
+            <p>2★：30</p>
+            <p>3★：40/55</p>
+            <p>4★：45/60/70</p>
+            <p>5★：50/70/80</p>
+            <p>6★：50/80/90</p>
+        </div>
+        <div class="col-12 col-sm-6 text-left cn">
+            <p><b>各等级经验书说明：</b></p>
+            <p>基础：200</p>
+            <p>初级：400</p>
+            <p>中级：1000</p>
+            <p>高级：2000</p>
+        </div>
+        <div class="col-12 col-sm-6 text-left en">
+            <p><b>Exp Card yields：</b></p>
+            <p>Green Card：200<sub></sub></p>
+            <p>Blue Card：400</p>
+            <p>Yellow Card：1000</p>
+            <p>Gold Card：2000</p>
+        </div>
+    </div>
     </div>
 
     <hr />
@@ -258,7 +268,7 @@
             <p>Powered by 一只灰猫。</p>
         </div>
         <div class="col-12 text-center en">
-            <p>Last update: 05/06/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
+            <p>Last update: 05/12/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
             <p>
                 Data source:
                 <a href="https://ak.hypergryph.com">Arknights</a>
@@ -292,6 +302,13 @@
                 }
                 $("#current-evolve").val(0);
                 $("#target-evolve").val(0);
+            });
+            $(document).on('click', '.level2max', function () {
+                let star = parseInt($("#star").val());
+                let opt = $(this).attr("opt");
+                let ev = parseInt($("#" + opt + "-evolve").val());
+                $("#" + opt + "-level").val(maxLevel[star - 1][ev]);
+                console.log(maxLevel[star - 1][ev])
             });
             $(document).on('click', '#btn-calculate', function () {
                 $("#error-info").hide();
