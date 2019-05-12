@@ -1,4 +1,4 @@
-## [明日方舟工具箱](https://graueneko.github.io)
+## 明日方舟工具箱
 **作者：一只灰猫**
 
 #### 功能
@@ -16,7 +16,7 @@
 
 
 ## Arknights Toolbox
-**Author: GraueNeko, Aceship
+**Authors: GraueNeko, Aceship**
 
 #### Functions
 1. [Recruitment Recommender](https://graueneko.github.io/akhr.html?lang=en)
