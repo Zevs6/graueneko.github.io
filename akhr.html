@@ -376,10 +376,10 @@
                     }
                     $("#tbody-recommend").append(
                         "<tr class=\"tr-recommd\">" +
-                        "<td class=\"d-none d-sm-table-cell\">" + no++ + "</td>" +
-                        "<td>" + tags_html.join("") + "</td><td>" + chars_html.join("") +
+                        "<td class=\"py-2 d-none d-sm-table-cell\">" + no++ + "</td>" +
+                        "<td class=\"py-1\">" + tags_html.join("") + "</td><td class=\"py-1\">" + chars_html.join("") +
                         "</td>" + 
-                        "<td class=\"d-none d-sm-table-cell\">" + Math.floor(comb.score * 100) / 100 + "</td>" +
+                        "<td class=\"py-2 d-none d-sm-table-cell\">" + Math.floor(comb.score * 100) / 100 + "</td>" +
                         "</tr>");
 
                 });
@@ -401,11 +401,11 @@
                     });
                     $("#tbody-recommend").append(
                         "<tr class=\"tr-chartag\">"+ 
-                        "<td class=\"d-none d-sm-table-cell\">#</td>" + 
-                        "<td><button type=\"button\" class=\"btn btn-sm btn-" + colors[char.level] +
+                        "<td class=\"py-2 d-none d-sm-table-cell\">#</td>" + 
+                        "<td class=\"py-1\"><button type=\"button\" class=\"btn btn-sm btn-" + colors[char.level] +
                         " btn-char my-1\">" + char_name + "</button>\n" +
-                        "</td><td>" + tags_html.join("") +
-                        "</td><td class=\"d-none d-sm-table-cell\">#</td></tr>");
+                        "</td><td class=\"py-1\">" + tags_html.join("") +
+                        "</td><td class=\"py-2 d-none d-sm-table-cell\">#</td></tr>");
                 } else {
                     $(".tr-recommd").show();
                     $(".tr-chartag").remove();
