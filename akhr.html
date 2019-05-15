@@ -334,7 +334,7 @@
                         s += char.level;
                     });
                     s = s / chars.length;
-                    comb.score = s + tags.length / 10 - chars.length / avg_char_tag;
+                    comb.score = s - tags.length / 10 - chars.length / avg_char_tag;
                 });
                 combs.sort(function (a, b) {
                     return a.score > b.score ? -1 : (a.score < b.score ? 1 :
