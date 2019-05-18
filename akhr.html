@@ -81,11 +81,11 @@
                                             <span class="cn">名称</span>
                                             <span class="en">Name</span>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-primary btn-showopt my-1 btn-image" opt-id="showImage">
+                                        <button type="button" class="btn btn-sm btn-secondary btn-showopt my-1 btn-image" opt-id="showImage">
                                             <span class="cn">图片</span>
                                             <span class="en">Image</span>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-primary btn-showopt my-1 btn-imgsize btn-imgsizedefault" sizeval="27">
+                                        <button type="button" class="btn btn-sm btn-secondary btn-showopt my-1 btn-imgsize btn-imgsizedefault" sizeval="27">
                                             <span class="cn">小</span>
                                             <span class="en">Small</span>
                                         </button>
@@ -222,7 +222,7 @@
             });
             if (lang !== 'cn') $('[data-toggle="tooltip"]').tooltip();
 
-            let showImage = true;
+            let showImage = false;
             let showName = true;
             let imageSize = 27;
             $(document).on("click", ".btn-name", function () {
@@ -233,15 +233,21 @@
             $(document).on("click", ".btn-image", function () {
                 $(this).toggleClass("btn-primary btn-secondary");
                 $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
-                if ($(this).hasClass("btn-primary"))
-                    $(".btn-imgsize[sizeval=" + imageSize + "]").toggleClass("btn-primary btn-secondary");
-                showImage = !showImage;
+                if ($(this).hasClass("btn-primary")) $(".btn-imgsize[sizeval=" + imageSize + "]").toggleClass("btn-primary btn-secondary");
+                showImage = $(".btn-image").hasClass("btn-primary");
                 calc();
             });
             $(document).on("click", ".btn-imgsize", function () {
-                imageSize = parseInt($(this).attr("sizeval"));
-                $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
-                $(this).toggleClass("btn-primary btn-secondary");
+                if ($(this).hasClass("btn-primary")) {
+                    $(".btn-image").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                    $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                } else {
+                    imageSize = parseInt($(this).attr("sizeval"));
+                    $(".btn-image").removeClass("btn-primary btn-secondary").addClass("btn-primary");
+                    $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                    $(this).toggleClass("btn-primary btn-secondary");
+                }
+                showImage = $(".btn-image").hasClass("btn-primary");
                 calc();
             });
 
