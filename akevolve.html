@@ -279,7 +279,7 @@
                 }
                 genUrl();
             });
-            $(document).on("click", "#btn-filter", () => {
+            function filter() {
                 if (ismobile)
                     $(".card").each((_, e) => {
                         let v = parseInt($(e).find(".in-lack").val());
@@ -290,9 +290,11 @@
                         let v = parseInt($(e).find(".in-lack").val());
                         if (isNaN(v) || v === 0) $(e).hide();
                     });
-            });
+                console.log("filter")
+            }
+            $(document).on("click", "#btn-filter", filter);
             $(document).on("click", "#btn-reset", () => {
-                $(".btn-option").removeClass("btn-primary btn-secondary").addClass("btn-primary");
+                $(".btn-opt").removeClass("btn-primary btn-secondary").addClass("btn-primary");
                 $(".in-mc, .in-lack").val("");
                 if (ismobile)
                     $(".card").show();
@@ -329,6 +331,7 @@
                 }
                 $("#opt-all").addClass(savedOption.length === 5 ? "btn-primary" : "btn-secondary");
                 calc();
+                filter();
             });
 
         });
