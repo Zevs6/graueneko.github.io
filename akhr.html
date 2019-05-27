@@ -343,25 +343,10 @@
                     comb.possible = chars;
                     if (chars.length === 0) return;
                     let s = 0;
-                    //let min_star = 6;
-                    //if (tags.includes("高级资深干员")) {
-                    //    min_star = 6;
-                    //    s = 6;
-                    //} else if (tags.includes("资深干员")) {
-                    //    min_star = 5;
-                    //    s = 5;
-                    //} else {
-                        $.each(chars, (_, char) => {
-                            //min_star = min_star < char.level ? min_star : char.level;
-                            s += char.level;
-                        });
-                        s = s / chars.length;
-                    //}
-                    //if (min_star >= 4) {
-                    //    s = min_star + 1 / chars.length;
-                    //} else {
-                    //    s = s + 0.5 / tags.length + 1 / chars.length;
-                    //}
+                    $.each(chars, (_, char) => {
+                        s += char.level;
+                    });
+                    s = s / chars.length;
                     comb.score = s + 0.1 / tags.length + 0.9 / chars.length;
                 });
                 combs.sort(function (a, b) {
