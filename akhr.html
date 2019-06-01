@@ -163,7 +163,7 @@
     <hr />
     <div class="row col-12 page-footer">
         <div class="col-12 text-center cn">
-            <p>最近更新：2019/05/06，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
+            <p>最近更新：2019/06/01，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
             <p>
                 数据来源：
                 <a href="http://wiki.joyme.com/arknights/%E5%B9%B2%E5%91%98%E6%95%B0%E6%8D%AE%E8%A1%A8">明日方舟Wiki</a>
@@ -171,7 +171,7 @@
             <p>Powered by 一只灰猫。</p>
         </div>
         <div class="col-12 text-center en">
-            <p>Last update: 05/06/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
+            <p>Last update: 06/01/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
             <p>
                 Data source:
                 <a href="http://wiki.joyme.com/arknights/%E5%B9%B2%E5%91%98%E6%95%B0%E6%8D%AE%E8%A1%A8">Arknights Wiki (CN)</a>
@@ -182,6 +182,7 @@
     <script>
         $(function () {
             let lang = getLang();
+            let initialized = false;
             showCurrentLang();
             document.title = {
                 "cn": "明日方舟公开招募计算器",
@@ -222,35 +223,6 @@
             });
             if (lang !== 'cn') $('[data-toggle="tooltip"]').tooltip();
 
-            let showImage = false;
-            let showName = true;
-            let imageSize = 27;
-            $(document).on("click", ".btn-name", function () {
-                $(this).toggleClass("btn-primary btn-secondary");
-                showName = !showName;
-                calc();
-            });
-            $(document).on("click", ".btn-image", function () {
-                $(this).toggleClass("btn-primary btn-secondary");
-                $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
-                if ($(this).hasClass("btn-primary")) $(".btn-imgsize[sizeval=" + imageSize + "]").toggleClass("btn-primary btn-secondary");
-                showImage = $(".btn-image").hasClass("btn-primary");
-                calc();
-            });
-            $(document).on("click", ".btn-imgsize", function () {
-                if ($(this).hasClass("btn-primary")) {
-                    $(".btn-image").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
-                    $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
-                } else {
-                    imageSize = parseInt($(this).attr("sizeval"));
-                    $(".btn-image").removeClass("btn-primary btn-secondary").addClass("btn-primary");
-                    $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
-                    $(this).toggleClass("btn-primary btn-secondary");
-                }
-                showImage = $(".btn-image").hasClass("btn-primary");
-                calc();
-            });
-
             let tags_aval = {};
             let all_chars = {};
             let avg_char_tag = 0;
@@ -275,6 +247,43 @@
                     all_chars[name] = { 'level': char.level, 'tags': char.tags };
                 });
                 avg_char_tag = char_tag_sum / tag_count;
+            });
+
+            let showImage = getLocalStorage("hr-showImage", false);
+            let showName = getLocalStorage("hr-showName", true);
+            let imageSize = getLocalStorage("hr-imageSize",27);
+            function toggleBtnImage() {
+                $(".btn-image").toggleClass("btn-primary btn-secondary");
+                $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                if ($(".btn-image").hasClass("btn-primary")) $(".btn-imgsize[sizeval=" + imageSize + "]").toggleClass("btn-primary btn-secondary");
+                showImage = $(".btn-image").hasClass("btn-primary");
+                setLocalStorage("hr-showImage", showImage);
+                setLocalStorage("hr-imageSize", imageSize);
+                if(initialized) calc();
+            }
+            function toggleBtnName() {
+                $(".btn-name").toggleClass("btn-primary btn-secondary");
+                showName = !showName;
+                setLocalStorage("ht-showName", showName);
+                if(initialized) calc();
+            }
+            if (showImage) { toggleBtnImage(); }
+            $(document).on("click", ".btn-name", toggleBtnName);
+            $(document).on("click", ".btn-image", toggleBtnImage);
+            $(document).on("click", ".btn-imgsize", function () {
+                if ($(this).hasClass("btn-primary")) {
+                    $(".btn-image").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                    $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                } else {
+                    imageSize = parseInt($(this).attr("sizeval"));
+                    $(".btn-image").removeClass("btn-primary btn-secondary").addClass("btn-primary");
+                    $(".btn-imgsize").removeClass("btn-primary btn-secondary").addClass("btn-secondary");
+                    $(this).toggleClass("btn-primary btn-secondary");
+                }
+                showImage = $(".btn-image").hasClass("btn-primary");
+                setLocalStorage("hr-showImage", showImage);
+                setLocalStorage("hr-imageSize", imageSize);
+                calc();
             });
 
             function calc() {
@@ -478,6 +487,7 @@
                 $("#tbody-recommend").html("");
                 checkedTags = [];
             });
+            initialized = true;
         });
     </script>
 </body>

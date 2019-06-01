@@ -86,7 +86,7 @@
                 <span class="en">Load saved data</span>
             </button>
             <hr class="my-1" />
-            <p class="cn my-0"><small><a class="save" href="?n&h&o">右键或长按复制我，保存输入信息</a></small></p>
+            <p class="cn my-0"><small><a class="save" href="?n&h&o">右键或长按复制我，保存输入信息（跨设备使用）</a></small></p>
             <p class="en my-0"><small><a class="save" href="?n&h&o">Copy me with right click or long press, to save your input</a></small></p>
         </div>
         <div class="col-12 mt-3 p-1 p-sm-2">
@@ -97,10 +97,11 @@
         <div class="row col-12 tutorial">
             <div class="col-12 text-left cn">
                 <p><b>使用说明</b></p>
-                <p>1. 输入需要的材料数量；</p>
-                <p>2. 点击“过滤”掉与合成无关的材料；</p>
+                <p>1. 输入需要的，和已有的材料数量；</p>
+                <p>2. 自动以透明形式“过滤”掉与合成无关的材料；</p>
                 <p>3. 输入已有的材料数量；</p>
-                <p>4. 再次“过滤”掉不需要刷的材料。</p>
+                <p>4. 自动以透明形式“过滤”掉不需要考虑的材料。</p>
+                <p><b>材料数据可以保存在本地，如非跨设备使用，无需保存链接。</b></p>
             </div>
             <div class="col-12 text-left en">
                 <p><b>Usage</b></p>
@@ -108,16 +109,14 @@
                 <p>2. "Filter" out irrelevant materials.</p>
                 <p>3. Input material numbers you have.</p>
                 <p>4. "Filter" out materials you don't need to work for.</p>
+                <p><b>Data is saved locally. You can share the URL for working on other devices.</b></p>
             </div>
-        </div>
-        <div class="col-12 alert alert-success mt-1 cn" role="alert">
-            如需Excel版，可以使用<a href="https://bbs.nga.cn/read.php?tid=17155811">材料合成计算器</a>。
         </div>
     </div>
     <hr />
     <div class="row col-12 page-footer">
         <div class="col-12 text-center cn">
-            <p>最近更新：2019/05/11，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
+            <p>最近更新：2019/06/01，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
             <p>
                 数据来源：
                 <a href="https://ak.hypergryph.com">『明日方舟』</a>
@@ -125,7 +124,7 @@
             <p>Powered by 一只灰猫。</p>
         </div>
         <div class="col-12 text-center en">
-            <p>Last update: 05/09/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
+            <p>Last update: 06/01/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
             <p>
                 Data source:
                 <a href="https://ak.hypergryph.com">Arknights</a>
@@ -157,11 +156,11 @@
                         if (!ismobile)
                             $("#row-m").append('<div class="card-group m-1 lvl-' + ms[n]['level']
                                 + '" ' + (i < minShowLevel ? 'style="display:none;"' : '')
-                                + '><div class="card p-0' + ' border-' + colors[i - 1] + '" style="max-width:102px"><img class="card-img-top" style="max-width:100px;margin:auto;" src="img/material/'
+                                + '><div class="card p-0' + ' border-' + colors[i - 1] + ' bg-light" style="max-width:102px"><img class="card-img-top" style="max-width:100px;margin:auto;" src="img/material/'
                                 + ms[n]['id'] + '.png"><div class="card-body p-1 p-md-2">'
                                 + n + '<br />'
                                 + srcHtml.join("<br />")
-                                + '</div></div><div class="card p-0' + ' border-' + colors[i - 1] + '" style="max-width:64px"><div class="card-body p-1 p-md-2">'
+                                + '</div></div><div class="card p-0' + ' border-' + colors[i - 1] + ' bg-light" style="max-width:64px"><div class="card-body p-1 p-md-2">'
                                 + '<form><div class="form-group mb-0">'
                                 + '<input type="text" class="form-control form-control-sm mt-1 in-mc" placeholder="' + { 'cn': '需要', 'en': 'Need' }[lang] + '" id="need-' + cardid + '"/>'
                                 + '<input type="text" class="form-control form-control-sm mt-1 in-mc" placeholder="' + { 'cn': '已有', 'en': 'Have' }[lang] + '" id="have-' + cardid + '"/>'
@@ -170,7 +169,7 @@
                                 + '</div></div>');
                         else
                             $("#row-m").append('<div class="card col-4 my-1 p-0 lvl-' + ms[n]['level'] + ' border-' + colors[i - 1]
-                                + '" ' + (i < minShowLevel ? 'style="display:none;"' : '')
+                                + ' bg-light" ' + (i < minShowLevel ? 'style="display:none;"' : '')
                                 + '><img class="card-img-top" style="max-width:70px;margin:auto;" src="img/material/'
                                 + ms[n]['id'] + '.png"><div class="card-body p-1 p-md-2">'
                                 + n + '<br />'
@@ -184,6 +183,7 @@
                     });
                     $("#row-m").append('<div class="w-100 my-1" />');
                 }
+                loadSaved();
             });
 
             let allns = []; let allhs = []; let allos = [];
@@ -193,6 +193,9 @@
                     if ($(".btn-opt[opt-id='" + i + "']").hasClass("btn-primary")) allos.push(i);
                 }
                 $(".save").attr("href", "?n=" + allns.join("+") + "&h=" + allhs.join("+") + "&o=" + allos.join("+"));
+                setLocalStorage("ev-need", allns.join("+"));
+                setLocalStorage("ev-have", allhs.join("+"));
+                setLocalStorage("ev-opts", allos.join("+"));
             }
             function calc() {
                 let counts = {};
@@ -250,6 +253,18 @@
                     allhs.push(counts[m.name].have);
                 });
                 genUrl();
+                if(ismobile)
+                    $(".card").each((_, e) => {
+                        let v = parseInt($(e).find(".in-lack").val());
+                        $(e).removeClass("card-trans");
+                        if (isNaN(v) || v === 0) $(e).addClass("card-trans");
+                    });
+                else
+                    $(".card-group").each((_, e) => {
+                        let v = parseInt($(e).find(".in-lack").val());
+                        $(e).find(".card").removeClass("card-trans");
+                        if (isNaN(v) || v === 0) $(e).find(".card").addClass("card-trans");
+                    });
             }
             $(document).on('change input paste', '.in-mc', calc);
             $(document).on("click", ".btn-opt", function () {
@@ -280,44 +295,51 @@
                 genUrl();
             });
             function filter() {
-                if (ismobile)
+                if(ismobile)
                     $(".card").each((_, e) => {
                         let v = parseInt($(e).find(".in-lack").val());
+                        $(e).removeClass("card-trans");
                         if (isNaN(v) || v === 0) $(e).hide();
                     });
                 else
                     $(".card-group").each((_, e) => {
                         let v = parseInt($(e).find(".in-lack").val());
+                        $(e).find(".card").removeClass("card-trans");
                         if (isNaN(v) || v === 0) $(e).hide();
                     });
-                console.log("filter")
             }
             $(document).on("click", "#btn-filter", filter);
             $(document).on("click", "#btn-reset", () => {
-                $(".btn-opt").removeClass("btn-primary btn-secondary").addClass("btn-primary");
                 $(".in-mc, .in-lack").val("");
                 if (ismobile)
-                    $(".card").show();
+                    $(".card").removeClass("card-trans").show();
                 else
-                    $(".card-group").show();
+                    $(".card-group").show().find(".card").removeClass("card-trans");
+                for (let i = 1; i <= 5; i++) {
+                    if (savedOption.includes(i.toString())) {
+                        $(".btn-opt[opt-id='" + i + "']").addClass("btn-primary");
+                        $(".lvl-" + i).show();
+                    } else {
+                        $(".btn-opt[opt-id='" + i + "']").addClass("btn-secondary");
+                        $(".lvl-" + i).hide();
+                    }
+                }
             })
-            let savedNeed = urlParam("n", "");
-            let savedHave = urlParam("h", "");
-            let savedOption = urlParam("o", "").split("+");
-            if (!(savedHave === "" || savedNeed === "" || savedOption === "")) {
+            let savedNeed = getLocalStorage("ev-need", urlParam("n", "")).split("+");
+            let savedHave = getLocalStorage("ev-have", urlParam("h", "")).split("+");
+            let savedOption = getLocalStorage("ev-opts", urlParam("o", "")).split("+");
+            if (savedHave || savedNeed || savedOption) {
                 $("#btn-load").show();
             } else {
                 $("#btn-load").hide();
             }
-
-            $(document).on("click", "#btn-load", () => {
-                let needs = savedNeed.split("+");
-                let haves = savedHave.split("+");
-                for (let i = 0; i < needs.length; i++) {
-                    $("#need-" + i).val(needs[i]);
+            function loadSaved() {
+                console.log(savedNeed)
+                for (let i = 0; i < savedNeed.length; i++) {
+                    $("#need-" + i).val(savedNeed[i]);
                 }
-                for (let i = 0; i < haves.length; i++) {
-                    $("#have-" + i).val(haves[i]);
+                for (let i = 0; i < savedHave.length; i++) {
+                    $("#have-" + i).val(savedHave[i]);
                 }
                 $(".btn-opt").removeClass("btn-primary btn-secondary");
                 for (let i = 1; i <= 5; i++) {
@@ -331,9 +353,8 @@
                 }
                 $("#opt-all").addClass(savedOption.length === 5 ? "btn-primary" : "btn-secondary");
                 calc();
-                filter();
-            });
-
+            }
+            $(document).on("click", "#btn-load", loadSaved);
         });
     </script>
 </body>

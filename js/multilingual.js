@@ -21,3 +21,12 @@ let _lang = getLang();
 function showCurrentLang() {
     $("." + _lang).show();
 };
+
+function getLocalStorage(key, defaultVal = undefined) {
+    let val = localStorage.getItem(key);
+    return val ? val : defaultVal;
+}
+
+function setLocalStorage(key, val) {
+    localStorage.setItem(key, val);
+}
