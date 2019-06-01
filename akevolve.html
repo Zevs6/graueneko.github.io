@@ -207,6 +207,7 @@
                     let diff = need - have;
                     counts[n] = {
                         'need': need,
+                        'have_s': 0+have,
                         'have': have,
                         'upper': 0,
                         'compose': 0,
@@ -245,12 +246,16 @@
                     });
                 }
                 allns = []; allhs = [];
+                for (let i = 0; i < ms.length; i++) {
+                    allns.push(0);
+                    allhs.push(0);
+                }
                 $.each(ms, (n, m) => {
                     $("#lack-" + m['id']).val(counts[n]['lack']);
                 })
                 $.each(ms, (_, m) => {
-                    allns.push(counts[m.name].need);
-                    allhs.push(counts[m.name].have);
+                    allns[m['id']]=counts[m.name].need;
+                    allhs[m['id']]=counts[m.name].have_s;
                 });
                 genUrl();
                 if(ismobile)
