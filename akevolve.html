@@ -86,8 +86,8 @@
                 <span class="en">Load saved data</span>
             </button>
             <hr class="my-1" />
-            <p class="cn my-0"><small><a class="save" href="?n&h&o">右键或长按复制我，保存输入信息（跨设备使用）</a></small></p>
-            <p class="en my-0"><small><a class="save" href="?n&h&o">Copy me with right click or long press, to save your input</a></small></p>
+            <p class="cn my-0"><small>输入信息自动保存，如需跨设备使用，请<a class="save" href="?n&h&o">右键或长按复制本链接</a></small></p>
+            <p class="en my-0"><small>Your input will be autosaved. For cross-device use, please <a class="save" href="?n&h&o">copy this link with right click or long press</a></small></p>
         </div>
         <div class="col-12 mt-3 p-1 p-sm-2">
             <div class="d-flex flex-wrap" id="row-m">
@@ -239,7 +239,7 @@
                             $.each(m['madeof'], (man, mac) => {
                                 counts[man].have -= maxCompose * mac;
                             });
-                            console.log(n + maxCompose);
+                            //console.log(n + maxCompose);
                             counts[n].have += maxCompose;
                             counts[n].lack = counts[n].need + counts[n].upper > counts[n].have ? counts[n].need + counts[n].upper - counts[n].have : 0;
                         }
@@ -314,32 +314,27 @@
                     });
             }
             $(document).on("click", "#btn-filter", filter);
+            let savedNeed = getLocalStorage("ev-need", urlParam("n", "")).split("+");
+            let savedHave = getLocalStorage("ev-have", urlParam("h", "")).split("+");
+            let savedOption = getLocalStorage("ev-opts", urlParam("o", "3+4+5")).split("+");
             $(document).on("click", "#btn-reset", () => {
                 $(".in-mc, .in-lack").val("");
                 if (ismobile)
                     $(".card").removeClass("card-trans").show();
                 else
                     $(".card-group").show().find(".card").removeClass("card-trans");
-                for (let i = 1; i <= 5; i++) {
-                    if (savedOption.includes(i.toString())) {
-                        $(".btn-opt[opt-id='" + i + "']").addClass("btn-primary");
-                        $(".lvl-" + i).show();
-                    } else {
-                        $(".btn-opt[opt-id='" + i + "']").addClass("btn-secondary");
-                        $(".lvl-" + i).hide();
-                    }
-                }
+                savedHave = "";
+                savedNeed = "";
+                savedOption = "3+4+5";
+                loadSaved();
             })
-            let savedNeed = getLocalStorage("ev-need", urlParam("n", "")).split("+");
-            let savedHave = getLocalStorage("ev-have", urlParam("h", "")).split("+");
-            let savedOption = getLocalStorage("ev-opts", urlParam("o", "")).split("+");
             if (savedHave || savedNeed || savedOption) {
                 $("#btn-load").show();
             } else {
                 $("#btn-load").hide();
             }
             function loadSaved() {
-                console.log(savedNeed)
+                //console.log(savedNeed)
                 for (let i = 0; i < savedNeed.length; i++) {
                     $("#need-" + i).val(savedNeed[i]);
                 }
