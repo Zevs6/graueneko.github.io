@@ -182,12 +182,16 @@
                                 + '><img class="card-img-top" style="max-width:70px;margin:auto;" src="img/material/'
                                 + ms[n]['id'] + '.png"><div class="card-body p-1 p-md-2">'
                                 + n + '<br />'
-                                + srcHtml.join("<br />")
-                                + '<form><div class="form-group mb-0">'
-                                + '<input type="text" class="form-control form-control-sm mt-1 in-mc" placeholder="' + { 'cn': '需要', 'en': 'Need' }[lang] + '" id="need-' + cardid + '"/>'
-                                + '<input type="text" class="form-control form-control-sm mt-1 in-mc" placeholder="' + { 'cn': '已有', 'en': 'Have' }[lang] + '" id="have-' + cardid + '"/>'
+                                + '<div class="form-row"><div class="form-group mb-0 mx-1">'
+                                + '<div class="input-group input-group-sm"><div class="input-group-prepend"><button class="btn btn-sm btn-outline-danger btn-desc">-</button></div>'
+                                + '<input type="text" class="form-control form-control-sm in-mc" placeholder="' + { 'cn': '需要', 'en': 'Need' }[lang] + '" id="need-' + cardid + '"/>'
+                                + '<div class="input-group-append"><button class="btn btn-sm btn-outline-success btn-inc">+</button></div></div>'
+                                + '<div class="input-group input-group-sm mt-1"><div class="input-group-prepend"><button class="btn btn-sm btn-outline-danger btn-desc">-</button></div>'
+                                + '<input type="text" class="form-control form-control-sm in-mc" placeholder="' + { 'cn': '已有', 'en': 'Have' }[lang] + '" id="have-' + cardid + '"/>'
+                                + '<div class="input-group-append"><button class="btn btn-sm btn-outline-success btn-inc">+</button></div></div>'
                                 + '<input type="text" class="form-control form-control-sm mt-1 in-lack" placeholder="' + { 'cn': '仍需', 'en': 'Lack' }[lang] + '" id="lack-' + cardid + '" disabled/>'
-                                + '</div></form>'
+                                + '</div></div>'
+                                + srcHtml.join(" ")
                                 + '</div></div>');
                     });
                     $("#row-m").append('<div class="w-100 my-1" />');
@@ -333,10 +337,16 @@
                     $(".card").removeClass("card-trans").show();
                 else
                     $(".card-group").show().find(".card").removeClass("card-trans");
+                let tmpsh = savedHave;
+                let tmpsn = savedNeed;
+                let tmpopt = savedOption;
                 savedHave = [];
                 savedNeed = [];
                 savedOption = ["3", "4", "5"];
                 loadSaved();
+                savedHave = tmpsh;
+                savedNeed = tmpsn;
+                savedOption = tmpopt;
             })
             if (savedHave || savedNeed || savedOption) {
                 $("#btn-load").show();
@@ -365,7 +375,7 @@
                     }
                 }
                 $("#opt-all").addClass(savedOption.length === 5 ? "btn-primary" : "btn-secondary");
-                if (memval!==0) calc();
+                if (memval !== 0) calc();
             }
             $(document).on("click", "#btn-load", loadSaved);
             $(document).on("click", ".btn-desc", function () {
